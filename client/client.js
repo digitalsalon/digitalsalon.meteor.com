@@ -274,3 +274,29 @@ Template.inviteDialog.uninvited = function () {
 Template.inviteDialog.displayName = function () {
   return displayName(this);
 };
+
+
+Template.page.rendered = function () {
+  $('#datetimepicker').datetimepicker();
+}
+Template.page.events({
+  'click #submit': function(event, template){
+    var dateTime = template.find("#datetimepicker").value;
+    var title = template.find("#title").value;
+    var description = template.find("#description").value;
+
+    Meteor.call('createParty', {
+      title: title,
+      description: description,
+      x: 0,
+      y: 0,
+      public: true
+    }, function (error, party) {
+      if (! error) {
+        Session.set("selected", party);
+        if (! public && Meteor.users.find().count() > 1)
+          openInviteDialog();
+      }
+    });
+  }
+});
