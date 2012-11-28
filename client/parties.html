@@ -33,14 +33,6 @@
         </div>
 
         <div class="row">
-          <div class="span6">
-            {{> map}}
-            {{#if currentUser}}
-            <div class="pagination-centered">
-              <em><small>Double click the map to post a party!</small></em>
-            </div>
-            {{/if}}
-          </div>
           <div class="span4">
             {{> details}}
           </div>
@@ -53,20 +45,6 @@
 </template>
 
 <template name="map">
-  <div class="map">
-    {{#constant}}
-      <svg width="500" height="500">
-        <circle class="callout" cx=-100 cy=-100></circle>
-        <g class="circles"></g>
-        <g class="labels"></g>
-      </svg>
-    {{/constant}}
-    <div>
-      <small class="attribution muted">&copy;
-        <a href="http://www.openstreetmap.org/?lat=37.78212&lon=-122.40146&zoom=15&layers=M"
-           target="_blank">OpenStreetMap</a> contributors</small>
-    </div>
-  </div>
 </template>
 
 <template name="details">
