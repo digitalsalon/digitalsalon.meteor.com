@@ -26,7 +26,16 @@
           <div class="span5">
             <h3 style="margin-bottom: 0px">Digital Salon</h3>
           </div>
+            <div style="float: right">
+              {{loginButtons align="right"}}
+            </div>
+        </div>
+
+        <div class="row">
           <div class="span5">
+            {{> details}}
+          </div>
+          <div class="span4">
             <div class="span2" style="float: right">
               <form>
                   <label for="datetimepicker">New Party</label>
@@ -38,15 +47,6 @@
                   <button name="submit" id="submit">Bring it On and Kick Ass</button>
               </form>
             </div>
-            <div style="float: right">
-              {{loginButtons align="right"}}
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="span4">
-            {{> details}}
           </div>
         </div>
       </div>
