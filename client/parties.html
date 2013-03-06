@@ -58,9 +58,8 @@
 </template>
 
 <template name="details">
+  {{#each parties}}
   <div class="details">
-    {{#if party}}
-      {{#with party}}
         <h1>{{title}}</h1>
 
         <div class="description">{{description}}</div>
@@ -88,17 +87,8 @@
               <b><a href="#" class="remove">delete this listing</a></b>.
           </small></div>
         {{/if}}
-      {{/with}}
-    {{else}}
-      <h1 class="muted pagination-centered">
-        {{#if anyParties}}
-          Click a party to select it
-        {{else}}
-          Sign in and double click the map to post a party
-        {{/if}}
-      </h1>
-    {{/if}}
   </div>
+  {{/each}}
 </template>
 
 <template name="attendance">

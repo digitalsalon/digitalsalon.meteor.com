@@ -21,6 +21,10 @@ Template.details.party = function () {
   return Parties.findOne(Session.get("selected"));
 };
 
+Template.details.parties = function () {
+  return Parties.find();
+};
+
 Template.details.anyParties = function () {
   return Parties.find().count() > 0;
 };
