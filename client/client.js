@@ -106,23 +106,9 @@ Template.attendance.canInvite = function () {
 ///////////////////////////////////////////////////////////////////////////////
 // Map display
 
-// Use jquery to get the position clicked relative to the map element.
-var coordsRelativeToElement = function (element, event) {
-  var offset = $(element).offset();
-  var x = event.pageX - offset.left;
-  var y = event.pageY - offset.top;
-  return { x: x, y: y };
-};
-
 Template.map.events({
   'mousedown circle, mousedown text': function (event, template) {
     Session.set("selected", event.currentTarget.id);
-  },
-  'dblclick .map': function (event, template) {
-    if (! Meteor.userId()) // must be logged in to create events
-      return;
-    var coords = coordsRelativeToElement(event.currentTarget, event);
-    openCreateDialog(coords.x / 500, coords.y / 500);
   }
 });
 
@@ -213,15 +199,14 @@ Template.createDialog.events({
   'click .save': function (event, template) {
     var title = template.find(".title").value;
     var description = template.find(".description").value;
+    var datetime = template.find(".datetimepicker").value;
     var public = ! template.find(".private").checked;
-    var coords = Session.get("createCoords");
 
     if (title.length && description.length) {
       Meteor.call('createParty', {
         title: title,
         description: description,
-        x: coords.x,
-        y: coords.y,
+        datetime: datetime,
         public: public
       }, function (error, party) {
         if (! error) {
@@ -285,15 +270,14 @@ Template.page.rendered = function () {
 }
 Template.page.events({
   'click #submit': function(event, template){
-    var dateTime = template.find("#datetimepicker").value;
+    var datetime = template.find("#datetimepicker").value;
     var title = template.find("#title").value;
     var description = template.find("#description").value;
 
     Meteor.call('createParty', {
       title: title,
       description: description,
-      x: 0,
-      y: 0,
+      datetime: datetime,
       public: true
     }, function (error, party) {
       if (! error) {
