@@ -7,7 +7,7 @@
 /*
   Each party is represented by a document in the Parties collection:
     owner: user id
-    x, y: Number (screen coordinates in the interval [0, 1])
+    datetime: String
     title, description: String
     public: Boolean
     invited: Array of user id's that are invited (only if !public)
